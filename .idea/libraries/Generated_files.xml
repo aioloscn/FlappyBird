@@ -1,0 +1,34 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/dist/game.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/base/dataStore.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/base/resourceLoader.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/base/sprite.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/director.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/runtime/background.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/runtime/downPencil.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/runtime/land.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/runtime/pencil.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/runtime/upPencil.js" />
+        <item url="file://$PROJECT_DIR$/dist/main.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/dist/test.js" />
+      <root url="file://$PROJECT_DIR$/dist/game.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/base/dataStore.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/base/resourceLoader.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/base/sprite.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/director.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/runtime/background.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/runtime/downPencil.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/runtime/land.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/runtime/pencil.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/runtime/upPencil.js" />
+      <root url="file://$PROJECT_DIR$/dist/main.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
