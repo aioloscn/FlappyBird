@@ -11,7 +11,7 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _sprite2 = require("../base/sprite.js");
 
-var _director = require("../director");
+var _director = require("../director.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 

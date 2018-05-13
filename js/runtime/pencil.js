@@ -1,5 +1,5 @@
 import {sprite} from "../base/sprite.js";
-import {director} from "../director";
+import {director} from "../director.js";
 
 export class pencil extends sprite {
 
