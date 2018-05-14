@@ -47,28 +47,33 @@ var director = exports.director = function () {
         value: function run() {
             var _this = this;
 
-            this.dataStore.get('background').draw();
+            if (!this.isGameOver) {
+                this.dataStore.get('background').draw();
 
-            var pencils = this.dataStore.get('pencils');
-            if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
-                pencils.shift();
-                pencils.shift();
+                var pencils = this.dataStore.get('pencils');
+                if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
+                    pencils.shift();
+                    pencils.shift();
+                }
+
+                if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
+                    this.createPencil();
+                }
+
+                this.dataStore.get('pencils').forEach(function (value) {
+                    value.draw();
+                });
+
+                this.dataStore.get('land').draw();
+                this.dataStore.get('birds').draw();
+                var timer = requestAnimationFrame(function () {
+                    return _this.run();
+                });
+                this.dataStore.put('timer', timer);
+            } else {
+                cancelAnimationFrame(this.dataStore.get('timer'));
+                this.dataStore.destroy();
             }
-
-            if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
-                this.createPencil();
-            }
-
-            this.dataStore.get('pencils').forEach(function (value) {
-                value.draw();
-            });
-
-            this.dataStore.get('land').draw();
-            var timer = requestAnimationFrame(function () {
-                return _this.run();
-            });
-            this.dataStore.put('timer', timer);
-            // cancelAnimationFrame(this.dataStore.get('timer'));
         }
     }]);
 

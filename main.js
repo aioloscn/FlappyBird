@@ -3,6 +3,7 @@ import {background} from "./js/runtime/background.js";
 import {dataStore} from "./js/base/dataStore.js";
 import {director} from "./js/director.js";
 import {land} from "./js/runtime/land.js";
+import {birds} from "./js/player/birds.js";
 
 export class main {
     constructor() {
@@ -21,10 +22,13 @@ export class main {
     }
 
     init() {
+
+        this.director.isGameOver = false;
         this.dataStore
             .put('pencils', [])
             .put('background', background)
-            .put('land', land);
+            .put('land', land)
+            .put('birds', birds);
         // 在游戏逻辑运行之前创建铅笔
         this.director.createPencil();
         this.director.run();
