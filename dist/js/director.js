@@ -30,7 +30,7 @@ var director = exports.director = function () {
         _classCallCheck(this, director);
 
         this.dataStore = _dataStore.dataStore.getInstance();
-        this.moveSpeed = 2;
+        this.moveSpeed = 3.5;
     }
 
     _createClass(director, [{
@@ -43,10 +43,34 @@ var director = exports.director = function () {
             this.dataStore.get('pencils').push(new _downPencil.downPencil(top));
         }
     }, {
+        key: "birdsEvent",
+        value: function birdsEvent() {
+            for (var i = 0; i <= 2; i++) {
+                this.dataStore.get('birds').y[i] = this.dataStore.get('birds').birdsY[i];
+            }
+            this.dataStore.get('birds').time = 0;
+        }
+
+        // 判断小鸟是否撞击地面和铅笔
+
+    }, {
+        key: "check",
+        value: function check() {
+            var birds = this.dataStore.get('birds');
+            var land = this.dataStore.get('land');
+            console.log('birdsY: ' + birds.birdsY[0] + ' ########## birdsHeight: ' + birds.birdsHeight[0] + ' ########## land.y: ' + land.y);
+            // 判断撞击地板
+            if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
+                this.isGameOver = true;
+                return;
+            }
+        }
+    }, {
         key: "run",
         value: function run() {
             var _this = this;
 
+            this.check();
             if (!this.isGameOver) {
                 this.dataStore.get('background').draw();
 

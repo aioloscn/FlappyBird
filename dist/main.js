@@ -50,9 +50,25 @@ var main = exports.main = function () {
 
             this.director.isGameOver = false;
             this.dataStore.put('pencils', []).put('background', _background.background).put('land', _land.land).put('birds', _birds.birds);
+            this.registerEvent();
             // 在游戏逻辑运行之前创建铅笔
             this.director.createPencil();
             this.director.run();
+        }
+    }, {
+        key: "registerEvent",
+        value: function registerEvent() {
+            var _this2 = this;
+
+            this.canvas.addEventListener('touchstart', function (e) {
+                e.preventDefault();
+                // 用箭头函数才能将指针指向main，才能取到main中的变量
+                if (_this2.director.isGameOver) {
+                    _this2.init();
+                } else {
+                    _this2.director.birdsEvent();
+                }
+            });
         }
     }]);
 

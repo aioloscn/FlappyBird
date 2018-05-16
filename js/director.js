@@ -12,7 +12,7 @@ export class director {
 
     constructor() {
         this.dataStore = dataStore.getInstance();
-        this.moveSpeed = 2;
+        this.moveSpeed = 3.5;
     }
 
     createPencil() {
@@ -23,7 +23,27 @@ export class director {
         this.dataStore.get('pencils').push(new downPencil(top));
     }
 
+    birdsEvent() {
+        for (let i = 0; i <= 2; i++) {
+            this.dataStore.get('birds').y[i] = this.dataStore.get('birds').birdsY[i];
+        }
+        this.dataStore.get('birds').time = 0;
+    }
+
+    // 判断小鸟是否撞击地面和铅笔
+    check() {
+        const birds = this.dataStore.get('birds');
+        const land = this.dataStore.get('land');
+        console.log('birdsY: ' + birds.birdsY[0] + ' ########## birdsHeight: ' + birds.birdsHeight[0] + ' ########## land.y: ' + land.y);
+        // 判断撞击地板
+        if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
+            this.isGameOver = true;
+            return;
+        }
+    }
+
     run() {
+        this.check();
         if (!this.isGameOver) {
             this.dataStore.get('background').draw();
 

@@ -29,8 +29,21 @@ export class main {
             .put('background', background)
             .put('land', land)
             .put('birds', birds);
+        this.registerEvent();
         // 在游戏逻辑运行之前创建铅笔
         this.director.createPencil();
         this.director.run();
+    }
+
+    registerEvent() {
+        this.canvas.addEventListener('touchstart', e => {
+            e.preventDefault();
+            // 用箭头函数才能将指针指向main，才能取到main中的变量
+            if (this.director.isGameOver) {
+                this.init();
+            } else {
+                this.director.birdsEvent();
+            }
+        });
     }
 }

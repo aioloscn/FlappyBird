@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.birds = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
 var _sprite2 = require("../base/sprite.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,7 +34,7 @@ var birds = exports.birds = function (_sprite) {
         _this.clippingWidth = [34, 34, 34];
         _this.clippingHeight = [24, 24, 24];
         _this.birdX = window.innerWidth / 4;
-        _this.birdsX = [_this.birdX, _this.birdx, _this.birdX];
+        _this.birdsX = [_this.birdX, _this.birdX, _this.birdX];
         _this.birdY = window.innerHeight / 2;
         _this.birdsY = [_this.birdY, _this.birdY, _this.birdY];
         _this.birdWidth = 34;
@@ -43,6 +47,32 @@ var birds = exports.birds = function (_sprite) {
         _this.time = 0;
         return _this;
     }
+
+    _createClass(birds, [{
+        key: "draw",
+        value: function draw() {
+            // 切换小鸟图片的速度
+            var speed = .2;
+            this.count = this.count + speed;
+            if (this.index >= 2) {
+                this.count = 0;
+            }
+            this.index = Math.floor(this.count);
+
+            var g = 0.98 / 2.4;
+            // 向上的偏移量
+            var offsetUp = 30;
+            // 小鸟的位移
+            var offsetY = g * this.time * (this.time - offsetUp) / 2;
+
+            for (var i = 0; i <= 2; i++) {
+                this.birdsY[i] = this.y[i] + offsetY;
+            }
+            this.time++;
+
+            _get(birds.prototype.__proto__ || Object.getPrototypeOf(birds.prototype), "draw", this).call(this, this.img, this.clippingX[this.index], this.clippingY[this.index], this.clippingWidth[this.index], this.clippingHeight[this.index], this.birdsX[this.index], this.birdsY[this.index], this.birdsWidth[this.index], this.birdsHeight[this.index]);
+        }
+    }]);
 
     return birds;
 }(_sprite2.sprite);
