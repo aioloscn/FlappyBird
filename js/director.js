@@ -30,18 +30,49 @@ export class director {
         this.dataStore.get('birds').time = 0;
     }
 
+    // 判断小鸟是否和铅笔撞击
+    static isStrike(bird, pencil) {
+        let s = false;
+        if (bird.top > pencil.bottom || bird.bottom < pencil.top || bird.right < pencil.left || bird.left > pencil.right)
+            s = true;
+        return !s;
+    }
+
     // 判断小鸟是否撞击地面和铅笔
     check() {
         const birds = this.dataStore.get('birds');
         const land = this.dataStore.get('land');
-        console.log('birdsY: ' + birds.birdsY[0] + ' ########## birdsHeight: ' + birds.birdsHeight[0] + ' ########## land.y: ' + land.y);
+        const pencils = this.dataStore.get('pencils');
         // 判断撞击地板
         if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
             this.isGameOver = true;
             return;
         }
-    }
 
+        //  小鸟的边框模型
+        const birdsBorder = {
+            top: birds.y[0],
+            bottom: birds.birdsY[0] + birds.birdsHeight[0],
+            left: birds.birdsX[0],
+            right: birds.birdsX[0] + birds.birdsWidth[0]
+        };
+
+        const length = pencils.length;
+        for (let i = 0; i < length; i++) {
+            const pencil = pencils[i];
+            const pencilBorder = {
+                top: pencil.y,
+                bottom: pencil.y + pencil.height,
+                left: pencil.x,
+                right: pencil.x + pencil.width
+            };
+
+            if (director.isStrike(birdsBorder, pencilBorder)) {
+                this.isGameOver = true;
+                return;
+            }
+        }
+    }
     run() {
         this.check();
         if (!this.isGameOver) {
