@@ -10,6 +10,7 @@
         <item url="file://$PROJECT_DIR$/dist/js/director.js" />
         <item url="file://$PROJECT_DIR$/dist/js/player/birds.js" />
         <item url="file://$PROJECT_DIR$/dist/js/player/score.js" />
+        <item url="file://$PROJECT_DIR$/dist/js/player/startButton.js" />
         <item url="file://$PROJECT_DIR$/dist/js/runtime/background.js" />
         <item url="file://$PROJECT_DIR$/dist/js/runtime/downPencil.js" />
         <item url="file://$PROJECT_DIR$/dist/js/runtime/land.js" />
@@ -28,6 +29,7 @@
       <root url="file://$PROJECT_DIR$/dist/js/director.js" />
       <root url="file://$PROJECT_DIR$/dist/js/player/birds.js" />
       <root url="file://$PROJECT_DIR$/dist/js/player/score.js" />
+      <root url="file://$PROJECT_DIR$/dist/js/player/startButton.js" />
       <root url="file://$PROJECT_DIR$/dist/js/runtime/background.js" />
       <root url="file://$PROJECT_DIR$/dist/js/runtime/downPencil.js" />
       <root url="file://$PROJECT_DIR$/dist/js/runtime/land.js" />

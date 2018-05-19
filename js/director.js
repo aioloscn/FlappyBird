@@ -43,6 +43,7 @@ export class director {
         const birds = this.dataStore.get('birds');
         const land = this.dataStore.get('land');
         const pencils = this.dataStore.get('pencils');
+        const score = this.dataStore.get('score');
         // 判断撞击地板
         if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
             this.isGameOver = true;
@@ -72,6 +73,12 @@ export class director {
                 return;
             }
         }
+
+        // 加分
+        if (birds.birdsX[0] > pencils[0].x + pencils[0].width && score.isScore) {
+            score.isScore = false;
+            score.scoreNumber++;
+        }
     }
     run() {
         this.check();
@@ -82,6 +89,7 @@ export class director {
             if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
                 pencils.shift();
                 pencils.shift();
+                this.dataStore.get('score').isScore = true;
             }
 
             if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
@@ -93,10 +101,12 @@ export class director {
             });
 
             this.dataStore.get('land').draw();
+            this.dataStore.get('score').draw();
             this.dataStore.get('birds').draw();
             let timer = requestAnimationFrame(() => this.run());
             this.dataStore.put('timer', timer);
         } else {
+            this.dataStore.get('startButton').draw();
             cancelAnimationFrame(this.dataStore.get('timer'));
             this.dataStore.destroy();
         }

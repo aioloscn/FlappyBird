@@ -62,6 +62,7 @@ var director = exports.director = function () {
             var birds = this.dataStore.get('birds');
             var land = this.dataStore.get('land');
             var pencils = this.dataStore.get('pencils');
+            var score = this.dataStore.get('score');
             // 判断撞击地板
             if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
                 this.isGameOver = true;
@@ -91,6 +92,12 @@ var director = exports.director = function () {
                     return;
                 }
             }
+
+            // 加分
+            if (birds.birdsX[0] > pencils[0].x + pencils[0].width && score.isScore) {
+                score.isScore = false;
+                score.scoreNumber++;
+            }
         }
     }, {
         key: "run",
@@ -105,6 +112,7 @@ var director = exports.director = function () {
                 if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
                     pencils.shift();
                     pencils.shift();
+                    this.dataStore.get('score').isScore = true;
                 }
 
                 if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
@@ -116,12 +124,14 @@ var director = exports.director = function () {
                 });
 
                 this.dataStore.get('land').draw();
+                this.dataStore.get('score').draw();
                 this.dataStore.get('birds').draw();
                 var timer = requestAnimationFrame(function () {
                     return _this.run();
                 });
                 this.dataStore.put('timer', timer);
             } else {
+                this.dataStore.get('startButton').draw();
                 cancelAnimationFrame(this.dataStore.get('timer'));
                 this.dataStore.destroy();
             }

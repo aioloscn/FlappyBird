@@ -19,6 +19,10 @@ var _land = require("./js/runtime/land.js");
 
 var _birds = require("./js/player/birds.js");
 
+var _startButton = require("./js/player/startButton.js");
+
+var _score = require("./js/player/score.js");
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var main = exports.main = function () {
@@ -49,7 +53,7 @@ var main = exports.main = function () {
         value: function init() {
 
             this.director.isGameOver = false;
-            this.dataStore.put('pencils', []).put('background', _background.background).put('land', _land.land).put('birds', _birds.birds);
+            this.dataStore.put('pencils', []).put('background', _background.background).put('land', _land.land).put('score', _score.score).put('birds', _birds.birds).put('startButton', _startButton.startButton);
             this.registerEvent();
             // 在游戏逻辑运行之前创建铅笔
             this.director.createPencil();
